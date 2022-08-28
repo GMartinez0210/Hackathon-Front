@@ -57,7 +57,8 @@ app.get("/", async function(req, res) {
 app.get("/aforo", async function(req, res) {
     const latitud = "-12.092391975686"
     const longitud = "-77.02414767080"
-    const url = process.env.API_URL+"/local?"+`longitud=${longitud}&latitud=${latitud}`
+    // const url = process.env.API_URL+"/local?"+`longitud=${longitud}&latitud=${latitud}`
+    const url = 'https://bbva-test-5qn2h7yvaq-uc.a.run.app'+"/local?"+`longitud=${longitud}&latitud=${latitud}`
     const mapaInfoAPI = await axios.post(url)
         .then(response => response.data)
         .catch(() => [])
