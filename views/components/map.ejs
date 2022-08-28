@@ -1,55 +1,69 @@
 <div class="container m-auto row">
-    <div  style="position: relative;">
+    <div style="position: relative;">
         <div class="container">
             <div id="loader-custom" class="loader-custom d-none">
-                <div class="spinner-border" role="status" >
+                <div class="spinner-border" role="status">
                 </div>
-            </div>  
-            <div id="map" style="width: auto; height: 800px;"></div>
-            <div class="buscador">
-                <i class="fa fa-search form-control-feedback"></i>
-                <input type="text" id="search-map" style="width: 100%;margin-bottom:10px; height: 100%;">
             </div>
+            <div id="map" style="width: auto; height: 800px;"></div>
             <div class="oficinas">
-                <% mapInfo.forEach(info => { %>
+                <div class="buscador">
+                    <i class="fa fa-search form-control-feedback"></i>
+                    <input type="text" id="search-map" placeholder="Ingrese una Oficina">
+                </div>
+
+                
+
+                <% mapInfo.forEach(info=> { %>
                     <div class="oficina">
-                        <div class="titulo-oficina"> <%= info.oficina_nombre %> </div>
-                        <hr/>
+                        <div class="titulo-oficina">
+                            <%= info.oficina_nombre %>
+                        </div>
+                        <hr />
                         <div class="cuerpo-oficina">
                             <div class="cuerpo-oficina-info">
-                                <p >
-                                 <%= info.oficina_direccion %>
+                                <p>
+                                    <%= info.oficina_direccion %>
                                 </p>
                                 <p style="padding-right: 10px;">
                                     Te encuentras a: <%= info.distance %> km
                                 </p>
                             </div>
                             <div class="cuerpo-oficina-aforo">
-                                <p> Aforo total: <%= info.oficina_aforo %> </p>
-                                <p> Aforo disponible: <%= (info.oficina_aforo - info.customers) %> </p>
+                                <p> Aforo total: <%= info.oficina_aforo %>
+                                </p>
+                                <p style="font-weight: 700;"> Aforo disponible: <%= (info.oficina_aforo - info.customers) %>
+                                </p>
                             </div>
+                            <!-- 
                             <div>
                                 <p>De Lunes a Sábados</p>
                                 <p>8:00 am a 10:00 pm</p>
                                 <p>* Sábados: 8:00 am a 1:00 pm</p>
                             </div>
+                             -->
                         </div>
                     </div>
-                <% }) %>
+                    <% }) %>
             </div>
 
-            <div  class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center">
                 <div class="d-flex justify-center align-items-center">
-                    <span>Vacio</span> <div class="pl-2" style="margin-left: 0.2rem;height: 1rem; width:1rem;background-color: green;"></div>
+                    <span>Vacio</span>
+                    <div class="pl-2" style="margin-left: 0.2rem;height: 1rem; width:1rem;background-color: green;">
+                    </div>
                 </div>
                 <div class="d-flex justify-center align-items-center  mx-2">
-                    <span>Semi Lleno</span> <div class="pl-2" style="margin-left: 0.2rem;height: 1rem; width:1rem;background-color: yellow;"></div>
+                    <span>Semi Lleno</span>
+                    <div class="pl-2" style="margin-left: 0.2rem;height: 1rem; width:1rem;background-color: yellow;">
+                    </div>
                 </div>
                 <div class="d-flex justify-center align-items-center  mx-2">
-                    <span>Lleno</span> <div class="pl-2" style="margin-left: 0.2rem;height: 1rem; width:1rem;background-color: red;"></div>
+                    <span>Lleno</span>
+                    <div class="pl-2" style="margin-left: 0.2rem;height: 1rem; width:1rem;background-color: red;"></div>
                 </div>
             </div>
 
         </div>
-    </div> 
+    </div>
 </div>

@@ -14,15 +14,6 @@ app.use(cors())
 app.get("/", async function(req, res) {
     const sliderInfo = [
         {
-            littleP: "Quedate en casa",
-            title1P: "Consulta el",
-            title2P: "de nuestras oficinas",
-            titleEm: "aforo disponible actual",
-            p: "En tiempo real",
-            span: "Ingrese aquí",
-            img: "https://www.bbva.pe/content/dam/public-web/peru/photos/marquees/COMPLEX-HOGAR-TOTAL-1000X1000.im1659974507614im.jpg?imwidth=960"
-        },
-        {
             littleP: "Depósito a plazo",
             title1P: "Obtén en",
             title2P: "tu Tarjeta Smart y recibe hasta",
@@ -82,7 +73,9 @@ app.get("/aforo", async function(req, res) {
             mapInfoAux[key] = info
         })
         mapInfo.push(mapInfoAux)
-    });
+    })
+
+    console.log(mapInfo)
 
     const servicioInfo = [
         {
