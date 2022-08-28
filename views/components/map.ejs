@@ -1,38 +1,37 @@
 <div class="container m-auto row">
     <div  style="position: relative;">
-        <div>
+        <div class="container">
             <div id="loader-custom" class="loader-custom d-none">
                 <div class="spinner-border" role="status" >
                 </div>
             </div>  
             <div id="map" style="width: auto; height: 800px;"></div>
             <div class="buscador">
-
                 <i class="fa fa-search form-control-feedback"></i>
                 <input type="text" id="search-map" style="width: 100%;margin-bottom:10px; height: 100%;">
             </div>
             <div class="oficinas">
                 <% mapInfo.forEach(info => { %>
                     <div class="oficina">
-                        <div class="titulo-oficina"> Avenida: <%= info.oficina_nombre %> </div>
-                        
+                        <div class="titulo-oficina"> <%= info.oficina_nombre %> </div>
+                        <hr/>
                         <div class="cuerpo-oficina">
-                            <div class="cuerpo-oficina-info" style="display: flex;justify-content: space-between;">
-                                <div >
-                                    Direccion: <%= info.oficina_direccion %>
-                                </div>
-                                <div style="padding-right: 10px;">
-                                    Te encuentras a: <%= Math.round(Math.random() * 9) + 1 %> km
-                                </div>
+                            <div class="cuerpo-oficina-info">
+                                <p >
+                                 <%= info.oficina_direccion %>
+                                </p>
+                                <p style="padding-right: 10px;">
+                                    Te encuentras a: <%= info.distance %> km
+                                </p>
                             </div>
-                            
-                            <div>
+                            <div class="cuerpo-oficina-aforo">
                                 <p> Aforo total: <%= info.oficina_aforo %> </p>
-                                <p> Clientes en sede: <%= info.customers %> </p>
                                 <p> Aforo disponible: <%= (info.oficina_aforo - info.customers) %> </p>
                             </div>
                             <div>
-                                Horario: Lunes a domingo 8:00 am a 10:00 pm
+                                <p>De Lunes a Sábados</p>
+                                <p>8:00 am a 10:00 pm</p>
+                                <p>* Sábados: 8:00 am a 1:00 pm</p>
                             </div>
                         </div>
                     </div>

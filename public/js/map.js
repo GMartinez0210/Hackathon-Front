@@ -2,12 +2,12 @@ let  map;
 let marker;
 let infoWindow;
 const markers = [
-    {lat:-12.0925634,lng: -77.0203588,quantity:10,color:'yellow'},
+    {lat:-12.0925502,lng: -77.020291,quantity:10,color:'yellow'},
     {lat:-12.0972407 ,lng: -77.0224126,quantity:40,color:'red'},
-    {lat:-12.092057 ,lng: -77.018868,quantity:60,color:'green'},
+    {lat:-12.092513 ,lng: -77.024200,quantity:60,color:'green'},
 ];
 function iniciarMap(){
-        var coord = {lat:-12.0529046 ,lng: -77.0253457};
+        var coord = {lat:-12.093913 ,lng: -77.021239};
         map = new google.maps.Map(document.getElementById('map'),{
             zoom: 10,
             center: coord
@@ -55,7 +55,7 @@ function setCurrentPositionMap(){
                 };
                 const marker_google =new google.maps.Marker({
                     position: location_marker,
-                    icon:`../image/marker-${marker.color}.svg`,
+                    icon:`../images/marker-${marker.color}.svg`,
                     map: map,
                 })
                 
