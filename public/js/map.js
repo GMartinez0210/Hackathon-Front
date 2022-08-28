@@ -23,9 +23,16 @@ function iniciarMap() {
     autocomplete.addListener("place_changed", () => {
         const place = autocomplete.getPlace();
         const { geometry: { viewport, location } } = place;
-        map.setCenter(location);
-        map.setZoom(16);
-        addInfoMap(location);
+        if(location){
+            map.setCenter(location);
+            map.setZoom(16);
+            // addInfoMap(location);
+            new google.maps.Marker({
+                position: location,
+                icon: './images/person-location-2.svg',
+                map: map,
+            });
+        }
     })
 }
 var code_postal;
