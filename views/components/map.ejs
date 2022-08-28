@@ -1,0 +1,139 @@
+<div class="container m-auto row">
+    <div  style="position: relative;">
+        <div>
+            <div id="loader-custom" class="loader-custom d-none">
+                <div class="spinner-border" role="status" >
+                </div>
+            </div>  
+            <div id="map" style="width: auto; height: 800px;"></div>
+            <div class="buscador">
+
+                <i class="fa fa-search form-control-feedback"></i>
+                <input type="text" id="search-map" style="width: 100%;margin-bottom:10px; height: 100%;">
+            </div>
+            <div class="oficinas">
+                <% mapInfo.forEach(info => { %>
+                    <div class="oficina">
+                        <div class="titulo-oficina"> <%= info.oficina_nombre %> </div>
+                        
+                        <div class="cuerpo-oficina">
+                            <div style="display: flex;justify-content: space-between;">
+                                <div >
+                                    <%= info.oficina_direccion %>
+                                </div>
+                                <div style="padding-right: 10px;">
+                                    a <%= Math.round(Math.random() * 9) + 1 %> km
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <p> <%= info.oficina_aforo %> </p>
+                                <p> <%= info.customers %> </p>
+                                <p> <%= (info.oficina_aforo - info.customers) %> </p>
+                            </div>
+                            <div>
+                                Lunes a domingo 8:00 am a 10:00 pm
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+            <div  class="d-flex justify-content-center">
+                <div class="d-flex justify-center align-items-center">
+                    <span>Vacio</span> <div class="pl-2" style="margin-left: 0.2rem;height: 1rem; width:1rem;background-color: green;"></div>
+                </div>
+                <div class="d-flex justify-center align-items-center  mx-2">
+                    <span>Semi Lleno</span> <div class="pl-2" style="margin-left: 0.2rem;height: 1rem; width:1rem;background-color: yellow;"></div>
+                </div>
+                <div class="d-flex justify-center align-items-center  mx-2">
+                    <span>Lleno</span> <div class="pl-2" style="margin-left: 0.2rem;height: 1rem; width:1rem;background-color: red;"></div>
+                </div>
+            </div>
+
+        </div>
+    </div> 
+</div>
+
+<script>
+    let  map;
+    let marker;
+    let infoWindow;
+    const markers = [
+        {lat:-12.0925634,lng: -77.0203588,quantity:10,color:'yellow'},
+        {lat:-12.0972407 ,lng: -77.0224126,quantity:40,color:'red'},
+        {lat:-12.092057 ,lng: -77.018868,quantity:60,color:'green'},
+    ];
+    function iniciarMap(){
+            var coord = {lat:-12.0529046 ,lng: -77.0253457};
+            map = new google.maps.Map(document.getElementById('map'),{
+                zoom: 10,
+                center: coord
+            });
+            marker = new google.maps.Marker({
+                position: coord,
+                map: map,
+            });
+            const searchMap = document.getElementById('search-map');
+            const autocomplete = new google.maps.places.Autocomplete(searchMap);
+            autocomplete.addListener("place_changed",()=>{
+                const place = autocomplete.getPlace();
+                const {geometry:{viewport,location}} = place;
+                map.setCenter(location);
+                map.setZoom(16);
+                addInfoMap(location);
+            })
+    }
+    var code_postal;
+    async function searchPostalCode(coord){
+        geocoder = new google.maps.Geocoder();
+        
+        let data ={
+            address:'Dirección no encontrada.',
+        }
+        const {results} =await geocoder.geocode({'latLng': coord}, ()=>{});
+        if (results[0]) {
+            data.address =results[0].formatted_address;
+        }
+        return data;
+    }
+    setCurrentPositionMap();
+    function setCurrentPositionMap(){
+        let loader = document.getElementById("loader-custom");
+            loader.classList.remove("d-none");
+            if ("geolocation" in navigator){
+            navigator.geolocation.getCurrentPosition(function(position){ 
+                var currentLatitude = position.coords.latitude;
+                var currentLongitude = position.coords.longitude;
+                var currentLocation = { lat: currentLatitude, lng: currentLongitude };
+                markers.forEach(marker => {
+                    let location_marker = {
+                        lat:marker.lat,
+                        lng:marker.lng
+                    };
+                    const marker_google =new google.maps.Marker({
+                        position: location_marker,
+                        icon:`./img/marker-${marker.color}.svg`,
+                        map: map,
+                    })
+                    
+                    let fn = infoFn(location_marker,marker);
+                    google.maps.event.addListener(marker_google, 'click', fn);
+                });
+                map.setCenter(currentLocation);
+                map.setZoom(16);
+            });
+            loader.classList.add("d-none");
+        }
+    }
+    let infoFn = function (currentLocation,marker) {
+        return async function (e) {
+            if(infoWindow){
+                infoWindow.close();
+            }
+            const {address} =await searchPostalCode(currentLocation);
+            var content = `<div>Dirección: ${address}</div><img width="50px" height="50px" src="https://elcomercio.pe/resizer/Nsy5UpR-2y5zUZTnh2a6pu4IhD8=/1200x675/smart/filters:format(jpeg):quality(75)/arc-anglerfish-arc2-prod-elcomercio.s3.amazonaws.com/public/ZLZNRSMLOVF3VDGDBHX5LPD7IE.jpg"><div>Afluencia: ${marker.quantity} personas</div>`;
+            infoWindow = new google.maps.InfoWindow({map: map, content: content});
+            infoWindow.setPosition(currentLocation);
+        }
+    };
+</script>

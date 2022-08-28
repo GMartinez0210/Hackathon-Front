@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="info-servicio">
+        <h1 class="info-servicio-main-title">¿Vas a realizar una de estas opciones?</h1>
+        <div class="info-servicio-container">
+            <% servicioInfo.forEach(info => { %>
+                <div class="info-servicio-subcontainer">
+                    <div>
+                        <img src="<%= info.img %>">
+                    </div>
+                    <h2 class="info-servicio-title"> <%= info.h2 %> </h2>
+                </div>
+            <% }) %>
+        </div>
+        <div class="info-servicio-link-container">
+            <p>¡No mal gastes tu tiempo! Realiza tu acción de forma virtual</p>
+            <a class="info-servicio-link" href="#">
+                Banca Virtual
+            </a>
+        </div>
+    </div>
+</div>

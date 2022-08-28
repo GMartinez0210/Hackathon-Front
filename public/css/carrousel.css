@@ -1,0 +1,8 @@
+#botonCarrousel:hover {
+    opacity: 1;
+    background-color: #07aaaa;
+}
+
+#botonCarrousel{
+    color:white; background-color: #028484;padding: 20px; margin-top: 10px;
+}

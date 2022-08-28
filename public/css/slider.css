@@ -1,0 +1,54 @@
+.slider-container {
+    height: 50%; 
+    background-color: #004481;
+}
+
+.slider-info {
+    float:left; 
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    width: 50%;
+}
+
+.slider-info-little-p {
+    color: #5ac4c4;
+}
+
+.slider-info-title {
+    font-family: BentonSansBBVA-Bold,Helvetica,Arial,sans-serif; 
+    font-weight: 700; 
+    color: white; 
+    font-size: 40px;
+    line-height: 48px; 
+    width: 60%;
+}
+
+.slider-info-em {
+    color:yellow
+}
+
+.slider-info-p {
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.slider-info-span {
+    display: inline-block;
+    color:white; 
+    background-color: #028484;
+    padding: 20px; 
+    margin-top: 20px;
+}
+
+.slider-img-container {
+    
+    float: right;
+}
+
+.slider-img {
+    object-fit: cover;
+    max-width:600px; 
+    clip-path: polygon(30% 0,100% 0,100% 100%,0 100%); 
+    transform: scale(1.5)
+}
