@@ -50,8 +50,8 @@ async function searchPostalCode(coord) {
 }
 setCurrentPositionMap();
 function setCurrentPositionMap() {
-    let loader = document.getElementById("loader-custom");
-    loader.classList.remove("d-none");
+    // let loader = document.getElementById("loader-custom");
+    // loader.classList.remove("d-none");
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(function (position) {
             var currentLatitude = position.coords.latitude;
@@ -82,7 +82,7 @@ function setCurrentPositionMap() {
             map.setCenter(currentLocation);
             map.setZoom(16);
         });
-        loader.classList.add("d-none");
+        // loader.classList.add("d-none");
     }
 }
 let infoFn = function (location_marker, marker, marker_google, marker_current,currentLocation) {
@@ -162,7 +162,6 @@ const menu_button =document.getElementById('menu-button');
 if(menu_button){
     menu_button.addEventListener('click',()=>{
         const container_oficinas = document.getElementById('container-oficinas');
-        console.log(container_oficinas.style.display);
-        container_oficinas.style.display = (!container_oficinas.style.display || container_oficinas.style.display=='none') ? 'block' : 'none';
+        container_oficinas.classList.toggle("active")
     })
 }

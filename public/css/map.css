@@ -102,7 +102,12 @@
     .menu-button{
         display: flex;
     }
-    .container-oficinas{
-        display: none;
+    .container-oficinas {
+        height: 0px;
+        overflow: hidden;
+        transition: 0.25s ease-in-out;
+    }
+    .container-oficinas.active {
+        height: auto;
     }
 }
