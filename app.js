@@ -75,8 +75,6 @@ app.get("/aforo", async function(req, res) {
         mapInfo.push(mapInfoAux)
     })
 
-    console.log(mapInfo)
-
     const servicioInfo = [
         {
             img: "./images/TC.webp",

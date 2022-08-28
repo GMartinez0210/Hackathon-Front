@@ -62,3 +62,26 @@
 .oficina hr{
     margin: 0 0 6px 0;
 }
+
+.map-info-leyenda {
+    padding: 1.5rem;
+    border-radius: 1rem;
+
+    background-color: #FFF;
+    box-shadow: 0px 4px 4px #00000040;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    position: absolute;
+
+    bottom: 1rem;
+    right: 10rem;
+}
+
+.map-info-leyenda-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
