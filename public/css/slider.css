@@ -3,10 +3,21 @@
     background-color: #004481;
 }
 
+.slider-info-app {
+    font-family: BentonSansBBVA-Bold,Helvetica,Arial,sans-serif; 
+    font-weight: 900; 
+    color: yellow; 
+    font-size: 3.5rem;
+    line-height: 48px; 
+    width: 60%;
+
+    margin-bottom: 3.5rem;
+}
+
 .slider-info {
     float:left; 
     position: absolute;
-    top: 30%;
+    top: 10%;
     left: 20%;
     width: 50%;
 }

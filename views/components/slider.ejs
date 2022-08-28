@@ -10,14 +10,26 @@
         <% }) %>
     </div>
     <div class="carousel-inner slider-container">
+        <div class="carousel-item active">
+            <div class="slider-info">
+                <h1 class="slider-info-app"> Chapa tu ofi! </h1>
+                <p class="slider-info-little-p"> Quedate en casa </p>
+                <h1 class="slider-info-title"> 
+                    Consulta el
+                    <em class="slider-info-em"> aforo disponible actual </em> 
+                    de nuestras oficinas
+                </h1>
+                <p class="slider-info-p"> En tiempo real </p>
+                <a class="slider-info-span" href="/aforo"> Ingrese aquí </a>
+            </div>
+            <div class="slider-img-container">
+                <img class="d-block w-100 slider-img" alt=""
+                src="https://www.bbva.pe/content/dam/public-web/peru/photos/marquees/COMPLEX-HOGAR-TOTAL-1000X1000.im1659974507614im.jpg?imwidth=960">
+            </div>
+        </div>
 
-        <% sliderInfo.forEach((info, index) => { %>
-            <% if(index == 0) { %>
-                <div class="carousel-item active">
-            <% } %>
-            <% if(index != 0) { %>
-                <div class="carousel-item">
-            <% } %>
+        <% sliderInfo.forEach(info => { %>
+            <div class="carousel-item">
                 <div class="slider-info">
                     <p class="slider-info-little-p"> <%= info.littleP %> </p>
                     <h1 class="slider-info-title"> 
@@ -29,13 +41,7 @@
                         <% } %>
                     </h1>
                     <p class="slider-info-p"> <%= info.p %> </p>
-                    
-                    <% if(index == 0) { %>
-                        <a class="slider-info-span" href="/aforo"> <%= info.span %> </a>
-                    <% } %>
-                    <% if(index != 0) { %>
-                        <span class="slider-info-span"> <%= info.span %> </span>
-                    <% } %>
+                    <span class="slider-info-span"> <%= info.span %> </span>
                 </div>
                 <div class="slider-img-container">
                     <img class="d-block w-100 slider-img" alt=""
