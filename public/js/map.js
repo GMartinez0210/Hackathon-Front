@@ -6,13 +6,16 @@ const markers = [
     { lat: -12.0925502, lng: -77.020291, quantity: 10, color: 'yellow' },
     { lat: -12.0972407, lng: -77.0224126, quantity: 40, color: 'red' },
 ];
-
+let directionsService;
+let directionsDisplay;
 function iniciarMap() {
     var coord = { lat: -12.093913, lng: -77.021239 };
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
         center: coord
     });
+    directionsService = new google.maps.DirectionsService();
+    directionsDisplay = new google.maps.DirectionsRenderer();
     // marker = new google.maps.Marker({
     //     position: coord,
     //     icon:'./images/person-location-2.svg',
@@ -103,11 +106,7 @@ let infoFn = function (location_marker, marker, marker_google, marker_current,cu
 };
 function setRoute(marker, marker_google, marker_current,location_marker,currentLocation) {
     // Calculate route 
-    // directionsDisplay = null;
-    // directionsService = null;
-    let directionsService = new google.maps.DirectionsService();
-    let directionsDisplay = new google.maps.DirectionsRenderer();
-
+    // directionsDisplay.set('directions', null);
     directionsDisplay.setDirections({routes: []});
     directionsDisplay.setMap(null);
     const request = {
