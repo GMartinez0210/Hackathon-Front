@@ -6,8 +6,6 @@ const markers = [
     { lat: -12.0925502, lng: -77.020291, quantity: 10, color: 'yellow' },
     { lat: -12.0972407, lng: -77.0224126, quantity: 40, color: 'red' },
 ];
-let directionsService;
-let directionsDisplay;
 
 function iniciarMap() {
     var coord = { lat: -12.093913, lng: -77.021239 };
@@ -98,13 +96,14 @@ let infoFn = function (location_marker, marker, marker_google, marker_current,cu
 };
 function setRoute(marker, marker_google, marker_current,location_marker,currentLocation) {
     // Calculate route 
-    directionsDisplay = null;
-    directionsService = null;
+    // directionsDisplay = null;
+    // directionsService = null;
+    let directionsService = new google.maps.DirectionsService();
+    let directionsDisplay = new google.maps.DirectionsRenderer();
 
-    directionsService = new google.maps.DirectionsService();
-    directionsDisplay = new google.maps.DirectionsRenderer();
-
-        const request = {
+    directionsDisplay.setDirections({routes: []});
+    directionsDisplay.setMap(null);
+    const request = {
         travelMode: google.maps.TravelMode.DRIVING
     };
     const position_current = marker_current.getPosition();
@@ -138,11 +137,6 @@ async function calculateTimeDistance(currentLocation,location_marker){
         origins: [origin1],
         destinations: [destinationB],
         travelMode: 'DRIVING',
-        // transitOptions: TransitOptions,
-        // drivingOptions: DrivingOptions,
-        // unitSystem: UnitSystem,
-        // avoidHighways: Boolean,
-        // avoidTolls: Boolean,
     }, ()=>{});
     let origins = response.originAddresses;
     let distance = '';
