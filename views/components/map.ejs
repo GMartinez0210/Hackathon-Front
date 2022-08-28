@@ -11,9 +11,12 @@
                     <i class="fa fa-search form-control-feedback"></i>
                     <input type="text" id="search-map" placeholder="Ingrese una Oficina">
                 </div>
-
-                <% mapInfo.forEach(info=> { %>
-                    <div class="oficina">
+                <div class="menu-button" id="menu-button">
+                    <img src="./images/menu.svg" alt="">
+                </div>
+                <div class="container-oficinas" id="container-oficinas">
+                    <% mapInfo.forEach(info=> { %>
+                    <div class="oficina my-3">
                         <div class="titulo-oficina">
                             <%= info.oficina_nombre %>
                         </div>
@@ -28,6 +31,7 @@
                         </div>
                     </div>
                     <% }) %>
+                </div>
             </div>
         </div>
 

@@ -158,3 +158,11 @@ async function calculateTimeDistance(currentLocation,location_marker){
     }
     return {distance:distance,duration:duration};
 };
+const menu_button =document.getElementById('menu-button');
+if(menu_button){
+    menu_button.addEventListener('click',()=>{
+        const container_oficinas = document.getElementById('container-oficinas');
+        console.log(container_oficinas.style.display);
+        container_oficinas.style.display = (!container_oficinas.style.display || container_oficinas.style.display=='none') ? 'block' : 'none';
+    })
+}
