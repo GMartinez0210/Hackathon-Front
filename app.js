@@ -73,7 +73,21 @@ app.get("/aforo", async function(req, res) {
             const key = mapInfoColumns[index]
             mapInfoAux[key] = info
         })
+        mapInfoAux = {
+          ...mapInfoAux,
+          aforo_disponible: mapInfoAux.oficina_aforo - mapInfoAux.customers
+        }
         mapInfo.push(mapInfoAux)
+    })
+
+    mapInfo.sort((a,b) => {
+      if (a.aforo_disponible < b.aforo_disponible){
+        return 1
+      }
+      if (a.aforo_disponible > b.aforo_disponible){
+        return -1
+      }
+      return 0
     })
 
     const servicioInfo = [
